@@ -17,6 +17,12 @@ class CreateApplicationsTable extends Migration
             $table->id();
             $table->foreignId('offer_id')->constrained();
             $table->string('name');
+            $table->string('lastname');
+            $table->string('phone');
+            $table->string('email');
+            $table->text('message')->nullable();
+            $table->string('cv_url');
+            $table->boolean('accepted_policy');
             $table->timestamps();
         });
     }
