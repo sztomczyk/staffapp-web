@@ -14,7 +14,7 @@
                             Aplikacje
                         </div>
                     </a>
-                    <a href="{{ route('applications') }}">
+                    <a href="{{ route('offers') }}">
                         <div class="border border-gray-300 rounded-md text-center p-5 hover:bg-gray-100">
                             Oferty
                         </div>

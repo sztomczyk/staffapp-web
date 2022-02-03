@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edytuj dział') }}
+            {{ __('Edytuj stanowisko') }}
         </h2>
     </x-slot>
 
@@ -12,35 +12,34 @@
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form method="POST" action="{{ route('departments.update') }}">
+                    <form method="POST" action="{{ route('positions.update') }}">
                         @csrf
                         @method('PUT')
 
-                        <input type="hidden" name="department_id" value="{{ $department->id }}">
+                        <input type="hidden" name="position_id" value="{{ $position->id }}">
 
                         <!-- Name -->
                         <div>
                             <x-label for="name" :value="__('Nazwa')" />
 
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $department->name }}" required autofocus/>
+                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $position->name }}" required autofocus/>
                         </div>
 
-                        <!-- Parent -->
+                        <!-- Department -->
                         <div class="mt-4">
-                            <x-label for="parent" :value="__('Dział nadrzędny')" />
+                            <x-label for="department" :value="__('Dział')" />
 
-                            <x-select class="block mt-1 w-full" name="parent_id" id="parent">
-                                <option value="0">Brak</option>
+                            <x-select class="block mt-1 w-full" name="department_id" id="department">
                                 @foreach ($departments as $d)
-                                    <option value="{{ $d->id }}" {{ $department->parent_id == $d->id ? 'selected' : '' }}>[{{ $d->id }}] {{ $d->name }}</option>
+                                    <option value="{{ $d->id }}" {{ $position->department_id == $d->id ? 'selected' : '' }}>[{{ $d->id }}] {{ $d->name }}</option>
                                 @endforeach
                             </x-select>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <a href="{{ route('departments') }}">Anuluj</a>
+                            <a href="{{ route('positions') }}">Anuluj</a>
                             <x-button class="ml-4">
-                                {{ __('Edytuj dział') }}
+                                {{ __('Edytuj stanowisko') }}
                             </x-button>
                         </div>
                     </form>

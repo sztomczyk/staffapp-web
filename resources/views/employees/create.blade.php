@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dodaj aplikacje') }}
+            {{ __('Dodaj pracownika') }}
         </h2>
     </x-slot>
 
@@ -12,16 +12,16 @@
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form method="POST" action="{{ route('applications.store') }}">
+                    <form method="POST" action="{{ route('employees.store') }}">
                         @csrf
 
                         <!-- Parent -->
                         <div>
-                            <x-label for="offer" :value="__('Oferta')" />
+                            <x-label for="position" :value="__('Stanowisko')" />
 
-                            <x-select class="block mt-1 w-full" name="offer_id" id="offer">
-                                @foreach ($offers as $offer)
-                                    <option value="{{ $offer->id }}">[{{ $offer->id }}] {{ $offer->position->name }} {{ $offer->location }}</option>
+                            <x-select class="block mt-1 w-full" name="position_id" id="position">
+                                @foreach ($positions as $position)
+                                    <option value="{{ $position->id }}">[{{ $position->id }}] {{ $position->name }}</option>
                                 @endforeach
                             </x-select>
                         </div>
@@ -54,32 +54,10 @@
                             <x-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone')" required />
                         </div>
 
-                        <!-- Message -->
-                        <div class="mt-4">
-                            <x-label for="message" :value="__('Wiadomość')" />
-
-                            <x-textarea id="message" class="block mt-1 w-full" type="text" name="message" :value="old('message')">{{ old('message') }}</x-textarea>
-                        </div>
-
-                        <!-- CV Url -->
-                        <div class="mt-4">
-                            <x-label for="cv_url" :value="__('CV URL')" />
-
-                            <x-input id="cv_url" class="block mt-1 w-full" type="text" name="cv_url" :value="old('cv_url')" required />
-                        </div>
-
-                        <!-- Policy is accepted -->
-                        <div class="block mt-4">
-                            <label for="accepted_policy" class="inline-flex items-center">
-                                <input id="accepted_policy" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="accepted_policy" required>
-                                <span class="ml-2 text-sm text-gray-600">{{ __('Akceptuje politykę prywatności ') }}</span>
-                            </label>
-                        </div>
-
                         <div class="flex items-center justify-end mt-4">
-                            <a href="{{ route('applications') }}">Anuluj</a>
+                            <a href="{{ route('employees') }}">Anuluj</a>
                             <x-button class="ml-4">
-                                {{ __('Dodaj aplikacje') }}
+                                {{ __('Dodaj pracownika') }}
                             </x-button>
                         </div>
                     </form>

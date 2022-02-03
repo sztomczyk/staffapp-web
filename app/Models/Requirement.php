@@ -9,8 +9,14 @@ class Requirement extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'offer_id',
+        'name',
+        'level'
+    ];
+
     public function offer()
     {
-        return $this->hasOne(Offer::class);
+        return $this->belongsTo(Offer::class);
     }
 }

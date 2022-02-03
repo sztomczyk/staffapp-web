@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Usuń dział') }}
+            {{ __('Usuń stanowisko') }}
         </h2>
     </x-slot>
 
@@ -12,12 +12,12 @@
                     <div class="text-center">
                         <div class="text-xl">Usuwasz dział, jesteś tego pewny/-a?</div>
                         <div class="flex justify-center mt-3">
-                            <a href="{{ route('departments') }}"><x-button>Anuluj</x-button></a>
-                            <form class="ml-3" action="{{ route('departments.destroy') }}" method="POST">
+                            <a href="{{ route('positions') }}"><x-button>Anuluj</x-button></a>
+                            <form class="ml-3" action="{{ route('positions.destroy') }}" method="POST">
                                 @csrf
                                 @method('delete')
 
-                                <input type="hidden" name="departmentId" value="{{ $departmentId }}">
+                                <input type="hidden" name="positionId" value="{{ $positionId }}">
                                 
                                 <x-button class="bg-red-600">Usuń</x-button>
                             </form>

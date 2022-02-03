@@ -17,32 +17,35 @@
                             <tr>
                                 <th class="text-left pb-3 pl-3">ID</th>
                                 <th class="text-left pb-3 pl-3">Stanowisko</th>
-                                <th class="text-left pb-3 pl-3">Lokalizacja</th>
                                 <th class="text-left pb-3 pl-3">Imię i nazwisko</th>
                                 <th class="text-left pb-3 pl-3">Nr telefonu</th>
                                 <th class="text-left pb-3 pl-3">E-mail</th>
-                                <th class="text-left pb-3 pl-3">Akceptuje politykę</th>
+                                <th class="text-left pb-3 pl-3">Akceptuje zgody</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody class="divide-y">
-                            <tr class="divide-x">
-                                <td class="py-3 pl-3">50</td>
-                                <td class="py-3 pl-3">Programista React</td>
-                                <td class="py-3 pl-3">Koszalin</td>
-                                <td class="py-3 pl-3">Szymon Tomczyk</td>
-                                <td class="py-3 pl-3">+48505091321</td>
-                                <td class="py-3 pl-3">szymon.tomczyk26@gmail.com</td>
-                                <td class="py-3 pl-3">Tak</td>
-                                <td class="py-3 pl-3 flex">
-                                    <a href="#">
-                                        <x-edit-icon />
-                                    </a>
-                                    <a href="#">
-                                        <x-trash-icon />
-                                    </a>
-                                </td>
-                            </tr>
+                            @foreach ($applications as $application)
+                                <tr class="divide-x">
+                                    <td class="py-3 pl-3">{{ $application->id }}</td>
+                                    <td class="py-3 pl-3">{{ $application->offer->position->name }} {{ $application->offer->location }}</td>
+                                    <td class="py-3 pl-3">{{ $application->name }} {{ $application->lastname }}</td>
+                                    <td class="py-3 pl-3">{{ $application->phone }}</td>
+                                    <td class="py-3 pl-3">{{ $application->email }}</td>
+                                    <td class="py-3 pl-3">{{ $application->accepted_policy ? 'Tak' : 'Nie' }}</td>
+                                    <td class="py-3 pl-3 flex">
+                                        <a class="mr-1" href="{{ route('applications.view', $application->id) }}">
+                                            <x-view-icon />
+                                        </a>
+                                        <a class="mr-1" href="{{ route('applications.edit', $application->id) }}">
+                                            <x-edit-icon />
+                                        </a>
+                                        <a class="mr-1" href="{{ route('applications.delete', $application->id) }}">
+                                            <x-trash-icon />
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
