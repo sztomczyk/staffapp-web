@@ -37,7 +37,7 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-full mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                     <x-application-logo />
                 </div>
@@ -66,6 +66,14 @@
                                 <div>{{ $offer->recruitment_type }}</div>
                             </div>
                             <div class="p-4">
+                                <div class="text-sm uppercase opacity-50">Wymagania</div>
+                                <div>
+                                    @foreach ($offer->requirements as $requirement)
+                                        <div>{{ $requirement->name }} [Poziom {{ $requirement->level }}]</div>
+                                    @endforeach    
+                                </div>
+                            </div>
+                            <div class="p-4">
                                 <div class="text-sm uppercase opacity-50">Wynagrodzenie</div>
                                 <div>@if($offer->salary_to == null && $offer->salary_from != null) Od @endif {{ $offer->salary_from }} {{ $offer->salary_from && $offer->salary_to ? '-' : '' }} @if($offer->salary_from == null && $offer->salary_to != null) Do @endif {{ $offer->salary_to }} {{ !$offer->salary_from && !$offer->salary_to ? 'Brak informacji' : '' }}</div>
                             </div>
@@ -74,6 +82,34 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+
+                <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <!-- Validation Errors -->
+                            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        
+                            <form method="POST" action="{{ route('requirements.store') }}">
+                                @csrf
+        
+                                <!-- Offer -->
+                                <!-- Name -->
+                                <div class="mt-4">
+                                    <x-label for="name" :value="__('Nazwa')" />
+        
+                                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required/>
+                                </div>
+        
+                                <div class="flex items-center justify-end mt-4">
+                                    <a href="{{ route('requirements') }}">Anuluj</a>
+                                    <x-button class="ml-4">
+                                        {{ __('Dodaj wymaganie') }}
+                                    </x-button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
