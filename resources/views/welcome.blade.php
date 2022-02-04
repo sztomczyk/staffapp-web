@@ -43,35 +43,37 @@
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg divide-y">
-                    <div class="flex items-center divide-x">
-                        <div class="p-4 bg-gray-50">
-                            <div class="text-xl font-medium">React Developer</div>
-                            <div>Koszalin</div>
+                    @foreach ($offers as $offer)
+                        <div class="flex items-center w-100 divide-x">
+                            <div class="basis-1/5 p-4 bg-gray-50">
+                                <div class="text-xl font-medium">{{ $offer->position->name }}</div>
+                                <div>{{ $offer->location }}</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="text-sm uppercase opacity-50">Plan pracy</div>
+                                <div>{{ $offer->work_plan }}</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="text-sm uppercase opacity-50">Tryb pracy</div>
+                                <div>{{ $offer->work_mode }}</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="text-sm uppercase opacity-50">Typ kontraktu</div>
+                                <div>{{ $offer->contract_type }}</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="text-sm uppercase opacity-50">Tryb rekrutacji</div>
+                                <div>{{ $offer->recruitment_type }}</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="text-sm uppercase opacity-50">Wynagrodzenie</div>
+                                <div>@if($offer->salary_to == null && $offer->salary_from != null) Od @endif {{ $offer->salary_from }} {{ $offer->salary_from && $offer->salary_to ? '-' : '' }} @if($offer->salary_from == null && $offer->salary_to != null) Do @endif {{ $offer->salary_to }} {{ !$offer->salary_from && !$offer->salary_to ? 'Brak informacji' : '' }}</div>
+                            </div>
+                            <div class="p-4">
+                                <x-button class="bg-green-500 hover:bg-green-600">Aplikuj</x-button>
+                            </div>
                         </div>
-                        <div class="p-4">
-                            <div class="text-sm uppercase opacity-50">Plan pracy</div>
-                            <div>Full-time</div>
-                        </div>
-                        <div class="p-4">
-                            <div class="text-sm uppercase opacity-50">Tryb pracy</div>
-                            <div>Zdalnie</div>
-                        </div>
-                        <div class="p-4">
-                            <div class="text-sm uppercase opacity-50">Typ kontraktu</div>
-                            <div>B2B</div>
-                        </div>
-                        <div class="p-4">
-                            <div class="text-sm uppercase opacity-50">Tryb rekrutacji</div>
-                            <div>Stacjonarnie</div>
-                        </div>
-                        <div class="p-4">
-                            <div class="text-sm uppercase opacity-50">Wynagrodzenie</div>
-                            <div>10000,00 - 25000,00</div>
-                        </div>
-                        <div class="p-4">
-                            <x-button class="bg-green-500 hover:bg-green-600">Aplikuj</x-button>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

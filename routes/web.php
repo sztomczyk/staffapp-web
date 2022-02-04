@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Offer;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\DepartmentController;
@@ -20,7 +21,8 @@ use App\Http\Controllers\PositionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $offers = Offer::all();
+    return view('welcome', ['offers' => $offers]);
 });
 
 Route::middleware(['auth'])->group(function() {
