@@ -15,7 +15,9 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('offer_id')->constrained();
+            $table->foreignId('offer_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->string('name');
             $table->string('lastname');
             $table->string('phone');

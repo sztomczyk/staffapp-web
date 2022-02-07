@@ -59,23 +59,7 @@ class DepartmentController extends Controller
     {   
         $department = Department::findOrFail($request->departmentId);
         Department::where('parent_id', $request->departmentId)->update(['parent_id' => null]);
-        
-        // isset($department->positions->employees) ? 
-        //     $department->positions->employees->each->delete() : true;
-
-        // (isset($department->positions->offers) && isset($department->positions->offers->applications)) ?
-        //     $department->positions->offers->applications->each->delete() : true;
-
-        // (isset($department->positions->offers) && isset($department->positions->offers->requirements)) ?
-        //     $department->positions->offers->requirements->each->delete() : true;
-
-        // (isset($department->positions) && isset($department->positions->offers)) ?
-        //     $department->positions->offers->each->delete() : true;
-
-        // isset($department->positions) ?
-        //     $department->positions->each->delete() : true;
-
-        // $department->delete();
+        $department->delete();
 
         return redirect(route('departments'));
     }

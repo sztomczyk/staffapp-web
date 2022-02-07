@@ -15,7 +15,9 @@ class CreateRequirementsTable extends Migration
     {
         Schema::create('requirements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('offer_id')->constrained();
+            $table->foreignId('offer_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->string('name');
             $table->integer('level');
             $table->timestamps();

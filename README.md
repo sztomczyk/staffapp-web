@@ -1,4 +1,4 @@
 TODO:
 - [x] Wyświetlić ładnie oferty na landingu
-- [] Formularz składania aplikacji
-- [] Kaskadowe usuwanie
+- [x] Formularz składania aplikacji
+- [x] Kaskadowe usuwanie
