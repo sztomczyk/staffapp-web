@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Offer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\DepartmentController;
@@ -20,9 +21,11 @@ use App\Http\Controllers\PositionController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     $offers = Offer::all();
-    return view('welcome', ['offers' => $offers]);
+    $applicationSuccess = $request->query('applicationSuccess');
+
+    return view('welcome', ['offers' => $offers, 'applicationSuccess' => $applicationSuccess]);
 });
 
 Route::middleware(['auth'])->group(function() {

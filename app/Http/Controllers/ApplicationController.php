@@ -42,6 +42,10 @@ class ApplicationController extends Controller
             'accepted_policy' => $request->accepted_policy == 'on' ? 1 : 0
         ]);
 
+        if (isset($request->application_form_home) && $request->application_form_home) {
+            return redirect('/?applicationSuccess=true');
+        }
+
         return redirect(route('applications'));
     }
 
